@@ -2,9 +2,8 @@
  * Class: Object-Oriented Design and Analysis
  * Professor: Orlando Montalvo
  * Assignment: HW 10
- * 
+ * Student: Radhika Kasu
  * Date: 2018-11-11
- * 
  * Code taken from HeadFirst Object-Oriented Design Patterns sample
  */
 package HW10.edu.fsu.csc7400.observer.weather;
@@ -12,25 +11,30 @@ package HW10.edu.fsu.csc7400.observer.weather;
 /**
  * Forecast display
  */
-public class ForecastDisplay implements Observer, DisplayElement {
-	
+public class ForecastDisplay extends AbstractObserver implements DisplayElement {
+
 	/**
-	 * Constructor with weather data
-	 * 
-	 * @param weatherData
-	 *            the weather data for initialization
-	 * 
-	 * @precondition weatherData != null
-	 * @postcondition this will be registered as an observer to weatherData
+	 * Default Constructor with weather data
 	 */
-	public ForecastDisplay(WeatherData weatherData) {
-		assert(weatherData != null);
-		weatherData.registerObserver(this);
+	public ForecastDisplay(AbstractSubject weatherData) {
+		super(weatherData);
+
 	}
+
+	@Override
+	public void update(AbstractSubject abstractSubject) {
+		WeatherData wd=(WeatherData) abstractSubject;
+		lastPressure = currentPressure;
+		currentPressure = wd.getPressure();
+
+		display();
+
+	}
+
 
 	/**
 	 * Updates the display with new data
-	 * 
+	 *
 	 * @param temp
 	 *            current temperature
 	 * @param humidity
@@ -38,12 +42,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 	 * @param pressure
 	 *            current barometric pressure
 	 */
-	public void update(float temp, float humidity, float pressure) {
-                lastPressure = currentPressure;
-		currentPressure = pressure;
 
-		display();
-	}
 
 	/**
 	 * Displays the data
@@ -59,7 +58,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 		}
 	}
 
-	private float currentPressure = 29.92f;  
+	private float currentPressure = 29.92f;
 	private float lastPressure;
 
 }

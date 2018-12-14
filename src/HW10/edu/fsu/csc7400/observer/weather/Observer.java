@@ -2,9 +2,8 @@
  * Class: Object-Oriented Design and Analysis
  * Professor: Orlando Montalvo
  * Assignment: HW 10
- * 
+ * Student: Radhika Kasu
  * Date: 2018-11-11
- * 
  * Code taken from HeadFirst Object-Oriented Design Patterns sample
  */
 package HW10.edu.fsu.csc7400.observer.weather;
@@ -14,10 +13,10 @@ package HW10.edu.fsu.csc7400.observer.weather;
  *
  */
 public interface Observer {
-	
+
 	/**
 	 * Updates the temperature, humidity, and pressure of the observer as necessary
-	 * 
+	 *
 	 * @param temp current temperature
 	 * @param humidity current humidity level
 	 * @param pressure current barometric pressure
